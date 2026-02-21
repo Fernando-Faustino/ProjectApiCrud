@@ -15,7 +15,7 @@ namespace ProjectApiCrud.Service.FuncionarioService
         }
         public async Task<ServiceResponse<List<FuncionarioModel>>> CreateFuncionario(FuncionarioModel novoFuncionario)
         {
-            ServiceResponse<List<FuncionarioModel>> serviceResponse = new ServiceResponse<List<FuncionarioModel>>();
+            var serviceResponse = new ServiceResponse<List<FuncionarioModel>>();
 
             try
             {
@@ -49,7 +49,7 @@ namespace ProjectApiCrud.Service.FuncionarioService
 
             try
             {
-                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
+                var funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
                 if (funcionario == null)
                 {
                     serviceResponse.Data = null;
@@ -57,7 +57,7 @@ namespace ProjectApiCrud.Service.FuncionarioService
                     serviceResponse.Sucess = false;
 
                 }
-                _context.Funcionarios.Remove(funcionario);
+                _context.Funcionarios.Remove(funcionario!);
                 await _context.SaveChangesAsync();
 
                 serviceResponse.Data = _context.Funcionarios.ToList();
