@@ -50,6 +50,7 @@ namespace ProjectApiCrud.Service.FuncionarioService
             try
             {
                 var funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
+                
                 if (funcionario == null)
                 {
                     serviceResponse.Data = null;
